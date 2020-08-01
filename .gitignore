@@ -1,0 +1,11 @@
+#Credetials
+account.json
+
+# Compiled files
+*.tfstate
+*.tfstate.backup
+terraform.tfstate*
+ 
+# Module directory
+.terraform/
+
