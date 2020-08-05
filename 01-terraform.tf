@@ -1,8 +1,3 @@
-provider "google" {
-  credentials = file("account.json")
-  project     = "spartan-studio-125417"
-  region      = "us-west1"
-}
 terraform {
   required_version = "= 0.12.26"
   required_providers {
@@ -15,5 +10,8 @@ terraform {
     credentials = "account.json"
   }
 }
-
-
+provider "google" {
+  credentials = file("account.json")
+  project     = var.gcp_project_name
+  region      = var.region
+}

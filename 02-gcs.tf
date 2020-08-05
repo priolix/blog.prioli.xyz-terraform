@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "blogpriolixyz" {
-  name     = "blog.prioli.xyz"
+  name     = var.hugo_bucket_name
   location = "us-west1"
 
   website {
@@ -7,7 +7,7 @@ resource "google_storage_bucket" "blogpriolixyz" {
     not_found_page   = "404.html"
   }
   cors {
-    origin          = ["http://blog.prioli.xyz"]
+    origin          = ["http://${var.hugo_bucket_name}"]
     method          = ["GET", "HEAD", "PUT", "POST", "DELETE"]
     response_header = ["*"]
     max_age_seconds = 3600
