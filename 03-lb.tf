@@ -5,8 +5,8 @@ resource "google_compute_backend_bucket" "blogpriolixyz" {
 }
 
 resource "google_compute_address" "blogpriolixyz" {
-  name = "blogpriolixyz"
-  network_tier = "STANDARD"  
+  name         = "blogpriolixyz"
+  network_tier = "STANDARD"
 }
 
 resource "google_compute_url_map" "blogpriolixyz" {
@@ -15,7 +15,7 @@ resource "google_compute_url_map" "blogpriolixyz" {
   default_service = google_compute_backend_bucket.blogpriolixyz.self_link
 
   host_rule {
-    hosts = ["*"]
+    hosts        = ["*"]
     path_matcher = "allpaths"
   }
 
@@ -27,18 +27,18 @@ resource "google_compute_url_map" "blogpriolixyz" {
 
 #HTTP
 resource "google_compute_target_http_proxy" "blogpriolixyz" {
-  name             = "static-http-blogpriolixyz"
-  url_map          = google_compute_url_map.blogpriolixyz.self_link
+  name    = "static-http-blogpriolixyz"
+  url_map = google_compute_url_map.blogpriolixyz.self_link
 }
 
 resource "google_compute_forwarding_rule" "httpblogpriolixyz" {
-  name         = "httpblogpriolixyz"
+  name                  = "httpblogpriolixyz"
   load_balancing_scheme = "EXTERNAL"
-  target       = google_compute_target_http_proxy.blogpriolixyz.self_link
-  ip_address   = google_compute_address.blogpriolixyz.address
-  port_range   = 80
-  region       = "us-west1"
-  network_tier = "STANDARD"
+  target                = google_compute_target_http_proxy.blogpriolixyz.self_link
+  ip_address            = google_compute_address.blogpriolixyz.address
+  port_range            = 80
+  region                = "us-west1"
+  network_tier          = "STANDARD"
 }
 
 #HTTPS
@@ -49,19 +49,19 @@ resource "google_compute_target_https_proxy" "blogpriolixyz" {
 }
 
 resource "google_compute_forwarding_rule" "httpsblogpriolixyz" {
-  name         = "httpsblogpriolixyz"
+  name                  = "httpsblogpriolixyz"
   load_balancing_scheme = "EXTERNAL"
-  target       = google_compute_target_https_proxy.blogpriolixyz.self_link
-  ip_address   = google_compute_address.blogpriolixyz.address
-  port_range   = 443
-  region       = "us-west1"
-  network_tier = "STANDARD"
+  target                = google_compute_target_https_proxy.blogpriolixyz.self_link
+  ip_address            = google_compute_address.blogpriolixyz.address
+  port_range            = 443
+  region                = "us-west1"
+  network_tier          = "STANDARD"
 }
 
 resource "google_compute_managed_ssl_certificate" "blogpriolixyz" {
   provider = google-beta
-  name = "blogpriolixyz"
-  project = "spartan-studio-125417"
+  name     = "blogpriolixyz"
+  project  = "spartan-studio-125417"
   managed {
     domains = ["blog.prioli.xyz."]
   }

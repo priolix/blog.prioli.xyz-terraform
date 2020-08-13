@@ -18,7 +18,7 @@ resource "google_storage_bucket" "blogpriolixyz" {
 
 resource "google_storage_bucket_iam_binding" "binding" {
   bucket = google_storage_bucket.blogpriolixyz.name
-  role = "roles/storage.objectViewer"
+  role   = "roles/storage.objectViewer"
   members = [
     "allUsers",
   ]
