@@ -12,3 +12,8 @@ output "name" {
   value       = join("", google_storage_bucket.blogpriolixyz.*.name)
   description = "The name of bucket"
 }
+
+output "public_ip" {
+  value       = join("", google_compute_address.blogpriolixyz.*.address)
+  description = "LB Public IP"
+}
