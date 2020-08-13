@@ -1,16 +1,16 @@
 resource "google_compute_backend_bucket" "hugo" {
-  name        = "hugo"
+  name        = replace("${var.domain_name}", ".", "")
   bucket_name = google_storage_bucket.hugo.name
   enable_cdn  = false
 }
 
 resource "google_compute_address" "hugo" {
-  name         = "hugo"
+  name         = replace("${var.domain_name}", ".", "")
   network_tier = "STANDARD"
 }
 
 resource "google_compute_url_map" "hugo" {
-  name            = "hugo"
+  name            = replace("${var.domain_name}", ".", "")
   default_service = google_compute_backend_bucket.hugo.self_link
 
   host_rule {
