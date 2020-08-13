@@ -1,6 +1,6 @@
-resource "google_storage_bucket" "blogpriolixyz" {
+resource "google_storage_bucket" "hugo" {
   name     = var.hugo_bucket_name
-  location = "us-west1"
+  location = var.region
 
   website {
     main_page_suffix = "index.html"
@@ -17,7 +17,7 @@ resource "google_storage_bucket" "blogpriolixyz" {
 }
 
 resource "google_storage_bucket_iam_binding" "binding" {
-  bucket = google_storage_bucket.blogpriolixyz.name
+  bucket = google_storage_bucket.hugo.name
   role   = "roles/storage.objectViewer"
   members = [
     "allUsers",
