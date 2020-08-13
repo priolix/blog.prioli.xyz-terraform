@@ -1,5 +1,5 @@
 # Hugo and Terraform on GCP
-[![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)]  
+![Apache V2 License](http://img.shields.io/badge/license-Apache%20V2-blue.svg)  
 Small Terraform code to set up a [Google Cloud Storage Bucket](https://cloud.google.com/storage) behind a [Google Gloud LoadBalancer](https://cloud.google.com/load-balancing   ) with SSL for public and static purposes like [Hugo](https://gohugo.io/) website.  
 ## Requirements
 * terraform = 0.12.26
