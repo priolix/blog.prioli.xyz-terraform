@@ -17,3 +17,8 @@ output "public_ip" {
   value       = join("", google_compute_address.hugo.*.address)
   description = "LB Public IP"
 }
+
+output "public_ip_premium" {
+  value       = join("", google_compute_global_address.hugo_premium.*.address)
+  description = "LB Public IP"
+}
