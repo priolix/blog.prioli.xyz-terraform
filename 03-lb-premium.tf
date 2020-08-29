@@ -6,7 +6,6 @@ resource "google_compute_backend_bucket" "hugo_premium" {
 
 resource "google_compute_global_address" "hugo_premium" {
   name         = "${replace("${var.domain_name}", ".", "")}premium"
-  //network_tier = "PREMIUM"
 }
 
 resource "google_compute_url_map" "hugo_premium" {
@@ -36,8 +35,6 @@ resource "google_compute_global_forwarding_rule" "httphugopremium" {
   target                = google_compute_target_http_proxy.hugo_premium.self_link
   ip_address            = google_compute_global_address.hugo_premium.address
   port_range            = 80
-  //region                = var.region
-  //network_tier          = "PREMIUM"
 }
 
 #HTTPS
@@ -53,15 +50,4 @@ resource "google_compute_global_forwarding_rule" "httpshugopremium" {
   target                = google_compute_target_https_proxy.hugo_premium.self_link
   ip_address            = google_compute_global_address.hugo_premium.address
   port_range            = 443
-  //region                = var.region
-  //network_tier          = "PREMIUM"
 }
-
-#resource "google_compute_managed_ssl_certificate" "hugo" {
-#  provider = google-beta
-#  name     = replace("${var.domain_name}", ".", "")
-#  project  = "spartan-studio-125417"
-#  managed {
-#    domains = ["${var.domain_name}."]
-#  }
-#}
